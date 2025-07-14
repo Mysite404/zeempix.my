@@ -84,12 +84,195 @@
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
+        
+        /* Loading animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #00FF90;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Navbar styles */
+        .navbar {
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled {
+            background-color: rgba(28, 28, 30, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+            }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'military-green': '#00FF90',
+                        'soft-green': '#6DBB47',
+                        'dark-grey': '#1c1c1e',
+                        'medium-grey': '#2c2c2e',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 144, 0.3)' },
+                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 144, 0.6)' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-card-dark {
+            background: rgba(28, 28, 30, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .animated-lines {
+            position: relative;
+            overflow: hidden;
+        }
+        .animated-lines::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00FF90, transparent);
+            animation: moveLine 3s linear infinite;
+        }
+        @keyframes moveLine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 50%, #1c1c1e 100%);
+        }
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
     </style>
 </head>
 <body class="bg-dark-grey text-white font-sans">
     
+    <!-- Loading Animation -->
+    <div class="loader">
+        <div class="loader-spinner"></div>
+        <p class="text-dark-grey font-bold"> ZEEMPIX</p>
+    </div>
+    
+    <!-- Navbar -->
+    <nav class="navbar fixed w-full z-50 py-4 px-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-military-green">ZEEMPIX</a>
+            
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <div class="nav-links flex space-x-8">
+                <a href="#products" class="hover:text-military-green transition-colors">Products</a>
+                <a href="#about" class="hover:text-military-green transition-colors">About</a>
+                <a href="#contact" class="hover:text-military-green transition-colors">Contact</a>
+                <a href="https://wa.me/601155173669" target="_blank" class="bg-military-green text-black font-bold py-2 px-4 rounded-lg hover:bg-soft-green transition-colors">
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+    
     <!-- Hero Section -->
-    <section class="hero-bg min-h-screen flex items-center justify-center relative animated-lines">
+    <section class="hero-bg min-h-screen flex items-center justify-center relative animated-lines pt-16">
         <div class="container mx-auto px-4 text-center animate-fade-in">
             <!-- Logo -->
             <div class="mb-8">
@@ -97,6 +280,13 @@
                 <h1 class="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-white to-military-green bg-clip-text text-transparent">
                     ZEEMPIX
                 </h1>
+            </div>
+            
+            <!-- Description -->
+            <div class="max-w-2xl mx-auto mb-8">
+                <p class="text-lg md:text-xl text-gray-300">
+                    Zeempix is a Malaysian-based tactical clothing brand dedicated to producing high-performance military and outdoor apparel. Our mission is to equip soldiers, cadets, and frontline personnel with gear that reflects strength, endurance, and precision.
+                </p>
             </div>
             
             <!-- Tagline -->
@@ -391,5 +581,109 @@
             observer.observe(section);
         });
     </script>
+    <script>
+        // Loading animation
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.loader').style.opacity = '0';
+                setTimeout(function() {
+                    document.querySelector('.loader').style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            if (document.querySelector('.hamburger').classList.contains('active')) {
+                toggleMenu();
+            }
+        }
+
+        // Animated particles
+        function createParticles() {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach((particle, index) => {
+                const size = Math.random() * 4 + 2;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                
+                particle.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: #00FF90;
+                    border-radius: 50%;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    animation: float ${duration}s ${delay}s infinite linear;
+                    opacity: 0.6;
+                `;
+            });
+        }
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        }
+        
+        document.querySelector('.hamburger').addEventListener('click', toggleMenu);
+        
+        // Close menu when clicking on a link (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Initialize particles
+        createParticles();
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+    
 </body>
 </html>
