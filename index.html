@@ -1,1 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeempix - Made for Warriors</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'military-green': '#00FF90',
+                        'soft-green': '#6DBB47',
+                        'dark-grey': '#1c1c1e',
+                        'medium-grey': '#2c2c2e',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 144, 0.3)' },
+                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 144, 0.6)' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-card-dark {
+            background: rgba(28, 28, 30, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .animated-lines {
+            position: relative;
+            overflow: hidden;
+        }
+        .animated-lines::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00FF90, transparent);
+            animation: moveLine 3s linear infinite;
+        }
+        @keyframes moveLine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 50%, #1c1c1e 100%);
+        }
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-dark-grey text-white font-sans">
+    
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center relative animated-lines">
+        <div class="container mx-auto px-4 text-center animate-fade-in">
+            <!-- Logo -->
+            <div class="mb-8">
+                <img src="https://zeempix.my/assets/img/zeempixlogocirclelowkb.png" alt="Zeempix Logo" class="w-32 h-32 mx-auto mb-4 rounded-full shadow-2xl">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-white to-military-green bg-clip-text text-transparent">
+                    ZEEMPIX
+                </h1>
+            </div>
+            
+            <!-- Tagline -->
+            <h2 class="text-2xl md:text-3xl font-light mb-8 text-gray-300">
+                Made for warriors.
+            </h2>
+            
+            <!-- CTA Button -->
+            <button onclick="scrollToSection('products')" class="bg-military-green hover:bg-soft-green text-black font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 animate-glow">
+                Explore Our Gear
+            </button>
+        </div>
+        
+        <!-- Animated particles -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+        </div>
+    </section>
 
+    <!-- Product Showcase -->
+    <section id="products" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 animate-slide-up">
+                Our <span class="text-military-green">Arsenal</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="glass-card-dark rounded-2xl p-6 hover:scale-105 transition-all duration-300 group">
+                    <div class="mb-6 overflow-hidden rounded-xl">
+                        <img src="https://images.unsplash.com/photo-1644382992920-f3961043c9a5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwxfHx0YWN0aWNhbCUyMGNsb3RoaW5nfGVufDB8fHx8MTc1MjUwMjI5N3ww&ixlib=rb-4.1.0&q=85" 
+                             alt="Tactical Combat Uniform" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-military-green">Tactical Combat Uniform</h3>
+                    <p class="text-gray-300 mb-4">Premium tactical uniform designed for field operations and combat scenarios.</p>
+                    <div class="flex space-x-3">
+                        <button class="bg-military-green hover:bg-soft-green text-black font-bold py-2 px-4 rounded-lg transition-all duration-300 flex-1">
+                            View Details
+                        </button>
+                        <button class="border border-military-green hover:bg-military-green hover:text-black text-military-green font-bold py-2 px-4 rounded-lg transition-all duration-300 flex-1">
+                            Buy on Shopee
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="glass-card-dark rounded-2xl p-6 hover:scale-105 transition-all duration-300 group">
+                    <div class="mb-6 overflow-hidden rounded-xl">
+                        <img src="https://images.unsplash.com/photo-1542302525-62b7757e0c85?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDJ8MHwxfHNlYXJjaHwxfHxtaWxpdGFyeSUyMGdlYXJ8ZW58MHx8fHwxNzUyNTAyMzA0fDA&ixlib=rb-4.1.0&q=85" 
+                             alt="Tactical Gear Set" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-military-green">Professional Tactical Gear</h3>
+                    <p class="text-gray-300 mb-4">Complete tactical gear set including helmet, vest, and essential accessories.</p>
+                    <div class="flex space-x-3">
+                        <button class="bg-military-green hover:bg-soft-green text-black font-bold py-2 px-4 rounded-lg transition-all duration-300 flex-1">
+                            View Details
+                        </button>
+                        <button class="border border-military-green hover:bg-military-green hover:text-black text-military-green font-bold py-2 px-4 rounded-lg transition-all duration-300 flex-1">
+                            Buy on Shopee
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="glass-card-dark rounded-2xl p-6 hover:scale-105 transition-all duration-300 group">
+                    <div class="mb-6 overflow-hidden rounded-xl">
+                        <img src="https://images.unsplash.com/photo-1708458660786-058ed84f3a70?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwxfHxhcm15JTIwdW5pZm9ybXxlbnwwfHx8fDE3NTI1MDIzMTJ8MA&ixlib=rb-4.1.0&q=85" 
+                             alt="Military Field Uniform" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-military-green">Field Operations Uniform</h3>
+                    <p class="text-gray-300 mb-4">Durable military-grade uniform for outdoor operations and survival scenarios.</p>
+                    <div class="flex space-x-3">
+                        <button class="bg-military-green hover:bg-soft-green text-black font-bold py-2 px-4 rounded-lg transition-all duration-300 flex-1">
+                            View Details
+                        </button>
+                        <button class="border border-military-green hover:bg-military-green hover:text-black text-military-green font-bold py-2 px-4 rounded-lg transition-all duration-300 flex-1">
+                            Buy on Shopee
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-medium-grey">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 animate-slide-up">
+                    About <span class="text-military-green">Zeempix</span>
+                </h2>
+                
+                <div class="glass-card rounded-2xl p-8 md:p-12 mb-8">
+                    <p class="text-lg md:text-xl leading-relaxed mb-6 text-gray-300">
+                        Zeempix is a clothing brand from Malaysia that focuses on military and tactical style. We design and produce gear for army personnel, cadets, police units, and outdoor survivalists who need clothing they can rely on.
+                    </p>
+                    
+                    <p class="text-lg md:text-xl leading-relaxed mb-6 text-gray-300">
+                        Our products are made with purpose. Each one is designed to support movement, endurance, and the mindset of someone who never backs down. Whether you are in the field or on the street, Zeempix keeps you looking sharp and moving strong.
+                    </p>
+                    
+                    <p class="text-lg md:text-xl leading-relaxed text-gray-300">
+                        Trusted by those who train hard and stay ready at all times. Zeempix is more than just a brand. It is a symbol of discipline, strength, and warrior spirit.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card-dark rounded-xl p-6">
+                        <div class="text-military-green text-3xl mb-4">🎯</div>
+                        <h3 class="text-xl font-bold mb-2">Purpose-Built</h3>
+                        <p class="text-gray-300">Every product designed for performance and reliability.</p>
+                    </div>
+                    <div class="glass-card-dark rounded-xl p-6">
+                        <div class="text-military-green text-3xl mb-4">🛡️</div>
+                        <h3 class="text-xl font-bold mb-2">Trusted Quality</h3>
+                        <p class="text-gray-300">Used by professionals who demand the best.</p>
+                    </div>
+                    <div class="glass-card-dark rounded-xl p-6">
+                        <div class="text-military-green text-3xl mb-4">⚡</div>
+                        <h3 class="text-xl font-bold mb-2">Warrior Spirit</h3>
+                        <p class="text-gray-300">More than clothing - it's a mindset.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 animate-slide-up">
+                    Get in <span class="text-military-green">Touch</span>
+                </h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Contact Form -->
+                    <div class="glass-card-dark rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-military-green">Send us a message</h3>
+                        <form class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2" for="name">Name</label>
+                                <input type="text" id="name" name="name" class="w-full bg-medium-grey border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-military-green transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2" for="email">Email</label>
+                                <input type="email" id="email" name="email" class="w-full bg-medium-grey border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-military-green transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2" for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" class="w-full bg-medium-grey border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-military-green transition-colors"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-military-green hover:bg-soft-green text-black font-bold py-3 px-6 rounded-lg transition-all duration-300">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="glass-card-dark rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-military-green">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-military-green rounded-full flex items-center justify-center text-black">
+                                    📧
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Email</h4>
+                                    <p class="text-gray-300">contact@zeempix.my</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-military-green rounded-full flex items-center justify-center text-black">
+                                    💬
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">WhatsApp</h4>
+                                    <p class="text-gray-300">+60 11-5517 3669</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-military-green rounded-full flex items-center justify-center text-black">
+                                    🏢
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Location</h4>
+                                    <p class="text-gray-300">Malaysia</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Media -->
+                        <div class="mt-8 pt-8 border-t border-gray-700">
+                            <h4 class="font-bold mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-12 h-12 bg-military-green rounded-full flex items-center justify-center text-black hover:bg-soft-green transition-colors">
+                                    📷
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-military-green rounded-full flex items-center justify-center text-black hover:bg-soft-green transition-colors">
+                                    🎵
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-military-green rounded-full flex items-center justify-center text-black hover:bg-soft-green transition-colors">
+                                    🛒
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-grey py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <img src="https://zeempix.my/assets/img/zeempixlogocirclelowkb.png" alt="Zeempix Logo" class="w-16 h-16 mx-auto mb-4 rounded-full">
+                <p class="text-gray-400 mb-4">© 2024 Zeempix. All rights reserved.</p>
+                <p class="text-military-green font-bold">Made for warriors.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/601155173669" target="_blank" class="floating-whatsapp">
+        <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white text-2xl shadow-lg hover:bg-green-600 transition-colors">
+            💬
+        </div>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Animated particles
+        function createParticles() {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach((particle, index) => {
+                const size = Math.random() * 4 + 2;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                
+                particle.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: #00FF90;
+                    border-radius: 50%;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    animation: float ${duration}s ${delay}s infinite linear;
+                    opacity: 0.6;
+                `;
+            });
+        }
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Initialize particles
+        createParticles();
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
